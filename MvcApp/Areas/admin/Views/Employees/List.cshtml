@@ -1,0 +1,66 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+@model List<EmployeeModel>
+<div class="col-lg-12 grid-margin stretch-card">
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title">Striped Table</h4>
+            <a href="/Admin/Employees/Add"class="btn btn-gradient-primary btn-fw">New</a>
+            <p class="card-description">
+                Add class <code>.table-striped</code>
+            </p>
+            <table id="order-listing" class="table table-striped">
+                <thead>
+                    <tr>
+                        <th> Employeename </th>
+                        <th> Department </th>
+                        <th> Title </th>
+                        <th> Email </th>
+                        <th> Action </th>
+                    </tr>
+                </thead>
+                <tbody>
+                  
+                   
+                  
+                  
+                  
+                  
+@foreach(var emp in Model){
+                        <tr>
+                            <td class="py-1">
+                                @emp.Name
+                            </td>
+                            <td>@emp.Title </td>
+                            <td>
+                               @emp.Description
+                            </td>
+                            <td> $ 77.99 </td>
+                            <td>
+                                <a class="btn btn-primary" > Edit</a>
+                                <a class="btn btn-primary" > Delit</a>
+
+                            </td>
+                        </tr>
+}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+
+
+@section Scripts{
+    <!-- Plugin js for this page -->
+    <script src="~/Admin/vendors/datatables.net/jquery.dataTables.js"></script>
+    <script src="~/Admin/vendors/datatables.net-bs4/dataTables.bootstrap4.js"></script>
+    <!-- End plugin js for this page -->
+    <!-- Custom js for this page -->
+    <script src="~/Admin/js/data-table.js"></script>
+    <!-- End custom js for this page -->
+}

@@ -1,14 +1,9 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
-}
-@using MvcApp.Models
+﻿
 @model List<EmployeeModel>
 
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 
-
-    @foreach(var emp in Model){
+@foreach(var emp in Model){
     <div>
         <div class="column">
             <div class="card">
@@ -28,7 +23,15 @@
                     <p>@emp.Description</p>
                     <p>example@example.com</p>
                     <p>
-                        <a href="/Employees/Details">Contact</a>
+                        @{
+                            var parms = new Dictionary<string, string>
+                            {
+                                {"id",@emp.Id.ToString()},
+                                {"name",@emp.Name}
+                            };
+                        }
+                        @* <a href="/Employees/Details?name=@emp.Name">Contact</a> *@
+                        <a class="btn btn-primary" asp-controller="Employees" asp-action="Details" asp-all-route-data="parms"> Content</a>
                     </p>
                 </div>
             </div>

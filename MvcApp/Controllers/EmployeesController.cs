@@ -1,49 +1,36 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using MvcApp.Models;
+using MvcApp.Bl;
+
+
 
 
 namespace MvcApp.Controllers
 {
     public class EmployeesController : Controller
     {
+        ClsEmployee employeeService = new ClsEmployee();
         public IActionResult Create()
         {
             return View();
         }
 
-        List<EmployeeModel> employees;
 
+       
         public IActionResult List()
         {
-            employees = new List<EmployeeModel>();
-            EmployeeModel employee = new EmployeeModel();
-            employee.Id = 1;
-            employee.Name = "Fuad";
-            employee.Title = "IT";
-            employee.Description = "my work is very hard";
-            employee.ImageUrl = "mm";
-            employees.Add(employee);
-            employee = new EmployeeModel();
-            employee.Id = 2;
-            employee.Name = "Alex";
-            employee.Title = "Doctor";
-            employee.Description = "my work is very hard";
-            employee.ImageUrl = "mm";
-            employees.Add(employee);
 
-            employee = new EmployeeModel();
-            employee.Id = 2;
-            employee.Name = "Ali";
-            employee.Title = "Nerse";
-            employee.Description = "my work is very hard";
-            employee.ImageUrl = "mm";
-            employees.Add(employee);
-
+            var employees= employeeService.GetData();
             return View(employees);
         }
-        public IActionResult Details()
+        public IActionResult Details(int id,string name)
         {
-            return View();
+          var employees= employeeService.GetData();
+            ViewBag.id = id;
+            var myEmployee = employees.Where(a => a.Id == id).FirstOrDefault();
+            return View(myEmployee);
         }
+
+
     }
 }
